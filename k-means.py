@@ -33,7 +33,7 @@ try:
     import plotly
     from plotly.graph_objs import Scatter, Scatter3d, Layout
 except ImportError:
-    print "INFO: Plotly is not installed, plots will not be generated."
+    print("INFO: Plotly is not installed, plots will not be generated.")
 
 def main():
 
@@ -56,20 +56,20 @@ def main():
 
     # Generate some points to cluster
     points = [
-        makeRandomPoint(dimensions, lower, upper) for i in xrange(num_points)
+        makeRandomPoint(dimensions, lower, upper) for i in range(num_points)
     ]
 
     # Cluster those data!
     clusters = kmeans(points, num_clusters, cutoff)
 
-    # Print our clusters
+    # Print(our clusters)
     for i, c in enumerate(clusters):
         for p in c.points:
-            print " Cluster: ", i, "\t Point :", p
+            print(" Cluster: ", i, "\t Point :", p)
 
     # Display clusters using plotly for 2d data
     if dimensions in [2, 3] and plotly:
-        print "Plotting points, launching browser ..."
+        print("Plotting points, launching browser ...")
         plotClusters(clusters, dimensions)
 
 class Point(object):
@@ -201,7 +201,7 @@ def kmeans(points, k, cutoff):
 
         # If the centroids have stopped moving much, say we're done!
         if biggest_shift < cutoff:
-            print "Converged after %s iterations" % loopCounter
+            print("Converged after %s iterations" % loopCounter)
             break
     return clusters
 
@@ -278,7 +278,7 @@ def plotClusters(data, dimensions):
             ]
             symbol_count = len(symbols)
             if i > symbol_count:
-                print "Warning: Not enough marker symbols to go around"
+                print("Warning: Not enough marker symbols to go around")
             # Convert our list of x,y,z's separate lists.
             trace['x'], trace['y'], trace['z'] = zip(*cluster_data)
             trace['mode'] = 'markers'
