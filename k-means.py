@@ -3,6 +3,7 @@
 
 import math
 import random
+import numpy as np
 
 """
 This is a pure Python implementation of the K-Means Clustering algorithmn. The
@@ -37,27 +38,35 @@ except ImportError:
 
 def main():
 
+    # Tentando abrir arquivo de casos
+    data = np.loadtxt('caseBase.txt', delimiter=',', usecols=(1,2,3,6,7,16,17,24,25))
+
     # How many points are in our dataset?
-    num_points = 20
+    num_points = len(data)
 
     # For each of those points how many dimensions do they have?
     # Note: Plotting will only work in two or three dimensions
-    dimensions = 2
+    dimensions = 9
 
     # Bounds for the values of those points in each dimension
     lower = 0
-    upper = 200
+    upper = 15
 
     # The K in k-means. How many clusters do we assume exist?
-    num_clusters = 3
+    num_clusters = 6
 
     # When do we say the optimization has 'converged' and stop updating clusters
     cutoff = 0.2
 
     # Generate some points to cluster
     points = [
-        makeRandomPoint(dimensions, lower, upper) for i in range(num_points)
+        # makeRandomPoint(dimensions, lower, upper) for i in range(num_points)
+
     ]
+
+    for d in data:
+        p = Point(d)
+        points.append(p)
 
     # Cluster those data!
     clusters = kmeans(points, num_clusters, cutoff)
