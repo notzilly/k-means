@@ -39,21 +39,21 @@ except ImportError:
 def main():
 
     # Tentando abrir arquivo de casos
-    data = np.loadtxt('caseBase.txt', delimiter=',', usecols=(1,2,3,6,7,16,17,24,25))
+    data = np.loadtxt('caseBase.txt', delimiter=',', usecols=(1,2,3,18,19,26,27,5))
 
     # How many points are in our dataset?
     num_points = len(data)
 
     # For each of those points how many dimensions do they have?
     # Note: Plotting will only work in two or three dimensions
-    dimensions = 9
+    dimensions = 8
 
     # Bounds for the values of those points in each dimension
     lower = 0
     upper = 15
 
     # The K in k-means. How many clusters do we assume exist?
-    num_clusters = 6
+    num_clusters = 8
 
     # When do we say the optimization has 'converged' and stop updating clusters
     cutoff = 0.2
